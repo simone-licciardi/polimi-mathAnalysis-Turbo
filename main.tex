@@ -1,0 +1,50 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[italian]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[top=5cm,bottom=5cm,left=4cm,right=4cm]{geometry}
+\usepackage{graphicx,float}
+\usepackage{caption,subcaption}
+\usepackage{multirow}
+\usepackage[shortlabels]{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage[style=numeric,sorting=nty,backend=bibtex]{biblatex}
+
+\newtheorem{The}{Teorema}
+\newtheorem{Tec}{Tecniche notevoli}
+\newtheorem{Res}{Risultato}
+\newtheorem{Lem}[Res]{Lemma}
+\newtheorem*{Def}{Definizione}
+
+\newcommand{\Chapter}[2]{\chapter[#1]{#1\\[1ex]\large#2}}
+
+\includeonly
+{
+	chapters/integrale_gauss.tex,
+ 	chapters/funzione_gamma.tex,
+ 	chapters/costante_eulero_mascheroni.tex, 
+ 	chapters/approx_de_moivre_sterling.tex, 
+	chapters/sophomore_dream.tex
+}
+
+\author{S. Licciardi\thanks{simone.licciardi@mail.polimi.it}, PoliMI undergraduate}
+\date{\large Anno accademico 2022-2023}
+\title
+{
+	\large Complementi di\\
+	\LARGE \textbf{Analisi Matematica I} \\[.4\baselineskip]
+	\large tratto dalle lezioni di V. Pata, Politecnico di Milano
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\include{chapters/integrale_gauss.tex}
+\include{chapters/funzione_gamma.tex}
+\include{chapters/costante_eulero_mascheroni.tex}
+\include{chapters/approx_de_moivre_sterling.tex}
+\include{chapters/sophomore_dream.tex}
+
+\end{document}

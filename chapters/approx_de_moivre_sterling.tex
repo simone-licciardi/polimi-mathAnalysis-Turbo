@@ -1,0 +1,68 @@
+% approx_de_moivre_sterling.tex
+%! TeX root = ../lezione_turbo.tex
+\chapter{Formula di De Moivre-Sterling}
+Durante il Corso è stata impiegato spesso l'asintotico tra il fattoriale e la formula di De Moivre-Stirling. Questa fornisce una dimostrazione formale della relazione.
+
+\begin{Res} Vale l'uguaglianza asintotica
+	\[
+		n!\sim n^ne^{-n}\sqrt{2n\pi}.
+	\]
+\end{Res}
+
+\begin{proof}
+	Dimostreremo che
+	\[
+		n! = n^n e^{-n} \sqrt{n} \, p_n	
+	\]
+	dove $p_n\to\sqrt{2\pi}$ per $n \to \infty$. Per farlo, impiegheremo gli strumenti analitici del continuo al posto di quelli della matematica discreta, in modo tale da produrre funzioni come gli esponenziali della formula. Poichè la funzione fattoriale non ha un'estensione reale banale, ne usiamo una interpolazione sui reali. Alla luce dei risultati precedenti, è naturale impiegare la funzione Gamma. Essa è molto regolare$(C^\infty
+	%$ e $\Gamma \leq 0
+	)$, e quindi si presta a manipolazioni analitiche. Ricordiamo infatti che vale
+	\[
+		n!=\Gamma(n+1)=\int^{+\infty}_0e^{-t}t^n \:\mathrm{d}t,
+	\]
+	per ogni intero positivo $n$.
+
+	L'approccio dimostrativo diventa quello di estrarre dall'integrale di destra gli elementi della formula di De Moivre-Sterling.
+
+	Sostituiamo $t=n(u+1)$:
+	\[
+		n!=n^ne^{-n}\int^{+\infty}_{-1}n\left( e^{-u}(1+u)\right)^n \:\mathrm{d}u.
+	\]
+	A questo punto, eliminiamo il fattore moltiplicativo $1+u$ incorporandolo nell'esponenziale. Definiamo cioè una funzione continua $h(u)$ che soddisfi
+
+	\begin{equation}
+		\label{res2}
+		e^{-u}(1+u)=e^{-u^2 h(u)} \implies -u+\log(1+u)=-u^2h(u).
+	\end{equation}
+
+	Risolvendo l'equazione ed estendendo $h$ con continuità in $x=0$, otteniamo che
+	\begin{equation*}
+		h(u)=
+		\begin{cases}
+			(u-log(1+u))\frac{1}{u^2} & \text{se } u\neq0, \\
+			\frac{1}{2}               & \text{se }  u=0.
+		\end{cases}
+	\end{equation*}
+
+	Sostituendo questa funzione nell'integrale ed effettuando il cambio di variabile $t=u\sqrt{n}$ si ottiene l'identità
+	\begin{equation*}
+		n^ne^{-n}\int^{+\infty}_{-1}n\left( e^{-u}(1+u)\right)^n \:\mathrm{d}u=
+		n^ne^{-n}\sqrt{n}\int^{+\infty}_{-\sqrt{n}} e^{-t^2h\left(\frac{t}{\sqrt{n}}\right)} \:\mathrm{d}t.
+	\end{equation*}
+	Rimane quindi da verificare che
+	\[
+		p_n = \int^{+\infty}_{-\sqrt{n}} e^{-t^2h\left(\frac{t}{\sqrt{n}}\right)} \:\mathrm{d}t = \int^{+\infty}_{-\infty} e^{-t^2h\left(\frac{t}{\sqrt{n}}\right)} \chi_n(t) \:\mathrm{d}t,
+	\]
+	dove $\chi_n(x)$ indica la funzione indicatrice di $\left[-\sqrt{n},+\infty\right]$ valutata in $x$, converge a $\sqrt{2\pi}$.
+
+	Si definisca $f_n(t)= e^{-t^2h\left(\frac{t}{\sqrt{n}}\right)}\chi_n(t)$. Grazie alla continuità di $h(c)$ e della funzione esponenziale risulta che $\lim f_n(t)=e^{-\frac{1}{2}t^2}$ per ogni $t$\footnote{In Analisi 2, si dirà che la successione di funzioni $f_n$ tende alla funzione $e^{-\frac{1}{2}t^2}$ \textit{puntualmente}, un tipo di convergenza funzionale debole.}.
+
+	\goodbreak Per il teorema della Convergenza Dominata di Lebesgue\footnote{Si tratta di un risultato di Teoria della Misura sulle successioni di funzioni. Verrà affrotato in Probabilità e Analisi 3.}, commutiamo l'integrazione e il limite\footnote{Esplicitamente, si valuta prima l'integranda al limite e poi si integra il risultato.}.
+	\goodbreak\begin{multline}
+		\lim\limits_{n\to+\infty} p_n = \lim\limits_{n\to+\infty}\int^{+\infty}_{-\infty} e^{-t^2h\left(\frac{t}{\sqrt{n}}\right)} \chi_n(t) \:\mathrm{d}t=\\
+		=\int^{+\infty}_{-\infty}e^{-\frac{1}{2}t^2}\:\mathrm{d}t=\sqrt{2}\int^{+\infty}_{-\infty}e^{-u^2}\:\mathrm{d}u=\sqrt{2\pi},		
+	\end{multline}
+	dove abbiamo sostituito $u^2=\frac{t^2}{2}$ per ricavare la costante $\sqrt{2}$, e abbiamo sostituito l'integrale di Gauss.
+\end{proof}
+Questa dimostrazione fornisce anche un asintotico reale per $\Gamma(x)$, oltre che un asintotico discret per $n!$.
+\pagebreak

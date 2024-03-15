@@ -1,0 +1,102 @@
+% sophomore_dream.tex
+%! TeX root = ../lezione_turbo.tex
+\chapter{Sophomore's Dream}
+Il risultato di Bernoulli che in assoluto suscitò più clamore nella comunità matematica del tempo fu un'identità che passò alla storia con il nome Sophomore's Dream, in contrapposizione con la falsa uguaglianza
+\[
+	(x+y)^n=x^n+y^n,
+\]
+nota come Freshman's Dream.
+\begin{Res}[Sophomore's Dream]
+	\begin{equation}
+		\int^1_0x^{-x}\:\mathrm{d}x=\sum^{+\infty}_1n^{-n}
+	\end{equation}
+\end{Res}
+La dimostrazione dell'identità si basa su un lemma che Bernoulli provò integrando induttivamente per parti su $k$, ma che noi dimostreremo in maniera più elegante usando i risultati visti finora.
+\begin{Lem}
+	\label{lemma_sophomore}
+	Per ogni coppia di valori naturali $n$ e $k$ si verifica che
+	\[
+		\int^1_0x^n(\log(x))^k \:\mathrm{d}x=(-1)^k\frac{k!}{(n+1)^{k+1}}
+	\]
+\end{Lem}
+\begin{proof}[Dimostrazione - Lemma]
+	Seguendo un approccio diverso a quello del capitolo precedente, impieghiamo la funzione Gamma come estensione reale del fattoriale e applichiamo gli strumenti analitici del continuo. Sostituiamo $x=e^{-t}$ e utilizziamo la proprietà dell'integrale definito:
+	\begin{equation*}
+		\begin{split}
+			\int^1_0x^n(\log(x))^k \:\mathrm{d}x=&\int_{+\infty}^0e^{-tn}\left(\log\left(e^{-t}\right)\right)^k \left(-e^{-t}\right) \:\mathrm{d}t=\\
+			=&(-1)^k\int^{+\infty}_0e^{-(n+1)t}\, t^k \:\mathrm{d}t.
+		\end{split}
+	\end{equation*}
+	E per concludere sostituiamo $(n+1)t=y$:
+	\[
+		(-1)^k\int^{+\infty}_0e^{-y}\,\frac{y^k}{(n+1)^{k+1}} \:\mathrm{d}y=\frac{(-1)^k}{(n+1)^{k+1}}\int^{+\infty}_0e^{-y}y^k\:\mathrm{d}y.
+	\]
+	Infine, osserviamo che l'integrale del termine di destra è pari a $\Gamma(k+1)=k!$, da cui segue la tesi.
+\end{proof}
+\begin{proof}[Dimostrazione - Sophomore's Dream]
+	Richiamiamo che $e^q=\sum^{+\infty}_0\frac{q^n}{n!}$, e sostituendo $q$ otteniamo
+	\[
+		x^{-x}=e^{-x\log(x)}=\sum^{+\infty}_0\frac{(-x\log(x))^n}{n!}.
+	\]
+	E quindi vale l'identità
+	\[
+		\int^1_0x^{-x}\:\mathrm{d}x=\int^1_0\sum^{+\infty}_0\frac{(-x\log(x))^n}{n!}\:\mathrm{d}x,
+	\]
+	dove, applicando dei risultati sulle successioni di funzioni (in particolare, l'uniforme continuità e l'integrabilità delle funzioni), possiamo invertire l'integrale e la sommatoria, ricavando
+	\[
+		\int^1_0\sum^{+\infty}_0\frac{(-x\log(x))^n}{n!}\:\mathrm{d}x=\sum^{+\infty}_0\frac{(-1)^n}{n!}\int^1_0(x\log(x))^n \:\mathrm{d}x.
+	\]
+	Applicando il Lemma \ref{lemma_sophomore} e semplificando, otteniamo la tesi.
+	\[
+		\int^1_0x^{-x}\:\mathrm{d}x=\sum^{+\infty}_0\frac{1}{(n+1)^{n+1}}=\sum^{+\infty}_1n^{-n}.
+	\]
+\end{proof}
+Il lemma che abbiamo dimostrato è piuttosto potente e può essere impiegato per trovare anche altri integrali.
+\begin{Res} Calcolare
+	\[
+		\int^1_0\frac{\log(x)}{x-1}\:\mathrm{d}x
+	\]
+\end{Res}
+\begin{proof}[Calcolo]
+	L'integrale è improprio. I punti critici sono $0$ ed $1$: nell'intorno di $0$ l'integranda è asintotica a $\log(x)$, e nell'intorno di $1$ il numeratore è asintotico ad $x-1$, entrambe funzioni integrabili. Quindi, per il criterio asintotico la funzione è integrabile.
+
+	Questo integrale non ammette una primitiva in termini di funzioni elementari: per calcolarlo, lo riformuliamo in termini del Lemma \ref{lemma_sophomore}. Osserviamo che
+	\[
+		\int^1_0\frac{\log(x)}{x-1}\:\mathrm{d}x=-\int^1_0\log(x)\,\frac{1}{1-x}\:\mathrm{d}x=-\int^1_0\log(x)\,\sum^{+\infty}_0(x^n)\:\mathrm{d}x,
+	\]
+	dove nell'ultimo passaggio abbiamo sostituito la somma della serie geometrica $\frac{1}{1-x}$, sfruttando il fatto che $x$ è compreso tra $0$ ed $1$.
+
+	Applicando nuovamente dei risultati sulle successioni di funzioni,
+	\[
+		-\int^1_0\left(\log(x)\right)\sum^{+\infty}_0(x^n)\:\mathrm{d}x=-\sum^{+\infty}_0\int^1_0x^n\log(x)\:\mathrm{d}x.
+	\]
+	Ora è sufficiente sostituire il lemma e svolgere delle semplificazioni per ottenere che
+	\[
+		-\sum^{+\infty}_0\int^1_0x^n\log(x)\:\mathrm{d}x=\sum^{+\infty}_{0}\frac{1}{(n+1)^2}=\sum^{+\infty}_{1}n^{-2}=\frac{\pi^2}{6}.
+	\]
+\end{proof}
+
+Curiosamente, questo integrale si può calcolare anche invertendo il numeratore e il denominatore.
+
+\begin{Res} Calcolare
+	\[
+		\int^1_0\frac{x-1}{\log(x)}\:\mathrm{d}x
+	\]
+\end{Res}
+\begin{proof}[Calcolo]
+	In primo luogo, dimostriamo l'integrabilità impropria in maniera analoga al risulato precedente.
+
+	La tecnica necessaria per calcolare questo integrale è quella dell'integrale di Faymann. In pratica, si definisce una funzione che generalizzi l'integrale e, attraverso la derivazione, si trova il valore che ci interessa come caso particolare del risultato generale. Operativamente, si definisce
+	\[
+		\mathrm{F}(t)=\int^1_0\frac{x^t-1}{\log(x)}\:\mathrm{d}x
+	\]
+	e si determina $\mathrm{F}(1)$. Per farlo, applicheremo Lagrange. Osserviamo che $\mathrm{F}(0)=0$, e deriviamo la funzione $\mathrm{F}$. Postulando che siano verificate le ipotesi necessarie, deriviamo integriamo la derivata dell'integranda rispetto a $t$, e cioè
+	\[
+		\mathrm{F}'(t)=\int^1_0\left(\frac{x^t-1}{\log(x)}\right)'\:\mathrm{d}x=\int^1_0x^t\:\mathrm{d}t=\frac{1}{1+t}.
+	\]
+	Da cui, per Lagrange,
+	\[
+		\mathrm{F}(t)=\mathrm{F}(t)-\mathrm{F}(0)=\int^1_0x^t\:\mathrm{d}t=\int^1_0\frac{1}{1+t}\:\mathrm{d}x=\left[\log(1+t)\right]^1_0.
+	\]
+	Valutando l'ultimo termine otteniamo che l'integrale di partenza vale $\log(2)$.
+\end{proof}
