@@ -5,53 +5,73 @@
 
 \begin{Def}
 	Per funzione gaussiana si intende l'applicazione
-	\[
+	\begin{equation*}
 		f: x \in \mathbb{R} \to e^{-x^2} \in \mathbb{R}.
-	\]
+	\end{equation*}
 \end{Def}
 
 In questo capitolo la studiamo e forniamo un importante risultato preliminare: il valore del suo integrale improprio.
 %Essa è di fondamentale importanza non solo nella statistica e nella probabilità, ma anche nell'analisi matematica, dove può essere impiegata per ricavare il valore di alcuni integrali che non ammettono una primitiva elementare.
 %Essa è un esempio di funzione non \textit{elementare}: non è una funzione algebrica, esponenziale, logaritmica, nè se si ottiene da operazioni aritmetiche o dalla composizione.
 
-Partiamo da alcune proprietà utili per trovarlo. La funzione è continua su $\mathbb{R}$ ed è quindi localmente integrabile e ammette primitiva. Si può dimostrare che quest'ultima non è però \textit{elementare}, e cioè non può essere espressa attraverso operazioni tra e composizioni di funzioni algebriche, esponenziali o logaritmiche. Pertanto, anche se è teoricamente possibile calcolare l'integrale su un qualsiasi intervallo reale con il Teorema Fondamentale del Calcolo, non si dispone degli strumenti operativi per farlo. Per questo, il nostro obiettivo sarà determinare l'integrale improprio sull'intero dominio reale.
+Partiamo da alcune proprietà utili per trovarlo. La funzione è continua su $ \mathbb{R}$ ed è quindi localmente integrabile e ammette primitiva. 
+Si può dimostrare che quest'ultima non è però \textit{elementare}, e cioè non può essere espressa attraverso operazioni tra e composizioni di funzioni algebriche, esponenziali o logaritmiche. 
+Pertanto, anche se è teoricamente possibile calcolare l'integrale su un qualsiasi intervallo reale con il Teorema Fondamentale del Calcolo, non si dispone degli strumenti operativi per farlo. 
+Per questo, il nostro obiettivo sarà determinare l'integrale improprio sull'intero dominio reale.
 
 \begin{Res}[Integrale di Gauss]
 	\label{res_1}
-	\[
-		\,\int_{-\infty}^{+\infty}e^{-x^2} \,\mathrm{d}x = \sqrt{\pi}
-	\]
+	\begin{equation*}
+		\, \int_{- \infty}^{+ \infty}e^{-x^2} \, \mathrm{d}x = \sqrt{ \pi}
+	\end{equation*}
 \end{Res}
 \begin{proof}[Dimostrazione - Integrabilità]
-	Poichè l'intervallo su cui si calcola l'integrale non è limitato, si tratta di un integrale improprio. Per continuità della funzione, i punti critici (in cui verificare l'integrabilità) sono i soli estremi dell'intervallo.\\
-	Per parità, ci limitiamo a $\left[\,0,+\infty\right)$, dove per $x\geq1$ vale $e^{x^2}>x^2$, da cui segue che $x^{-2} \geq e^{-x^2}$. Allora, per il criterio del confronto si ha che \[\,\int_{1}^{+\infty} x^{-2} \,\mathrm{d}x \geq \,\int_{1}^{+\infty} e^{-x^2} \,\mathrm{d}x, \] e quindi $e^{-x^2}\in \mathbb{I}\,(\mathbb{R})$.
+	Poichè l'intervallo su cui si calcola l'integrale non è limitato, si tratta di un integrale improprio. 
+	Per continuità della funzione, i punti critici (in cui verificare l'integrabilità) sono i soli estremi dell'intervallo.
+
+	Per parità, ci limitiamo a $ \left[ \,0,+ \infty \right)$, dove per $x \geq 1$ vale $e^{x^2} > x^2$, da cui segue che $x^{-2} \geq e^{-x^2}$. 
+	Allora, per il criterio del confronto si ha che 
+	\begin{equation*}
+		\, \int_{1}^{+ \infty} x^{-2} \, \mathrm{d}x \geq \, \int_{1}^{+ \infty} e^{-x^2} \, \mathrm{d}x, 
+	\end{equation*}
+	e quindi $e^{-x^2} \in \mathbb{I} \,( \mathbb{R})$.
 \end{proof}
 \begin{proof}[Dimostrazione - Valore]
 	Poniamo
-	\[
-		\mathrm{I} = \,\int_{0}^{+\infty}e^{-x^2} \,\mathrm{d}x,
-	\]
+	\begin{equation*}
+		\mathrm{I} = 
+		\, \int_{0}^{+ \infty}e^{-x^2} \, \mathrm{d}x,
+	\end{equation*}
 	e per parità dell'integranda
-	\[
-		\,\int_{-\infty}^{+\infty}e^{-x^2} \,\mathrm{d}x = 2\,\mathrm{I}.
-	\]
-	Calcoliamo la quantità al quadrato. Per linearità, possiamo innestare gli integrali (che si comportano come delle costanti). In particolare, vale la seguente uguaglianza.
-	\[
-		\mathrm{I}^2 = \int_{0}^{+\infty}\mathrm{I}\,\left(e^{-x^2}\right) \,\mathrm{d}x=
-		\,\int_{0}^{+\infty} \left( \,\int_{0}^{+\infty} e^{-x^2} \,\mathrm{d}x\right) e^{-y^2} \,\mathrm{d}y
-	\]
-	Per linearità, portiamo $e^{-y^2}$ nell'integrale interno ed effettuiamo il cambio di variabili $t=\frac{x}{y}$ (con l'identità formale $\,\mathrm{d}x=y\,\mathrm{d}t$). Si ottiene
-	\[
-		\mathrm{I}^2 =\,\int_{0}^{+\infty} \left( \,\int_{0}^{+\infty} ye^{-y^2(1+t^2)} \,\mathrm{d}t\right) \,\mathrm{d}y.
-	\]
-	Per il Teorema di Fubini (che, in questo caso, richiede la continuità dell'integranda), scambiamo le variabili di integrazione. Calcoliamo la primitiva dell'integrale interno nella variabile $y$ (e cioè, considerando $t$ costante) e la valutiamo con il Teorema Fondamentale del Calcolo.
-	\[
+	\begin{equation*}
+		\, \int_{- \infty}^{+ \infty}e^{-x^2} \, \mathrm{d}x = 
+		2 \, \mathrm{I}.
+	\end{equation*}
+	Calcoliamo la quantità al quadrato. Per linearità, possiamo innestare gli integrali (che si comportano come delle costanti). 
+	In particolare, vale la seguente uguaglianza.
+	\begin{equation*}
+		\mathrm{I}^2 = 
+		\int_{0}^{+ \infty} \mathrm{I} \, \left(e^{-x^2} \right) \, \mathrm{d}x=
+		\, \int_{0}^{+ \infty} \left( \, \int_{0}^{+ \infty} e^{-x^2} \, \mathrm{d}x \right) e^{-y^2} \, \mathrm{d}y
+	\end{equation*}
+	Per linearità, portiamo $e^{-y^2}$ nell'integrale interno ed effettuiamo il cambio di variabili $t = \frac{x}{y}$ (con l'identità formale $ \, \mathrm{d}x=y \, \mathrm{d}t$). Si ottiene
+	\begin{equation*}
+		\mathrm{I}^2 = 
+		\, \int_{0}^{+ \infty} \left( \, \int_{0}^{+ \infty} ye^{-y^2(1+t^2)} \, \mathrm{d}t \right) \, \mathrm{d}y.
+	\end{equation*}
+	Per il Teorema di Fubini\footnote{Ri} (che, in questo caso, richiede la continuità dell'integranda), scambiamo le variabili di integrazione. 
+	Calcoliamo la primitiva dell'integrale interno nella variabile $y$ (e cioè, considerando $t$ costante) e la valutiamo con il Teorema Fondamentale del Calcolo.
+	\begin{equation*}
 		\begin{split}
-			\mathrm{I}^2 & =\,\int_{0}^{+\infty} \left( \,\int_{0}^{+\infty} ye^{-y^2(1+t^2)} \,\mathrm{d}y\right) \,\mathrm{d}t= \\
-			&=-\frac{1}{2}\,\int_{0}^{+\infty} \frac{1}{1+t^2} \ \left[ e^{-y^2(1+t^2)}\right]_{0}^{+\infty} \,\mathrm{d}t= \\
-			&=\frac{1}{2}\,\int_{0}^{+\infty} \frac{1}{1+t^2}\,\mathrm{d}t = \frac{\pi}{4}
+			\mathrm{I}^2 
+			& =
+			\, \int_{0}^{+ \infty} \left( \, \int_{0}^{+ \infty} ye^{-y^2(1+t^2)} \, \mathrm{d}y \right) \, \mathrm{d}t= 
+			\\ &=
+			- \frac{1}{2} \, \int_{0}^{+ \infty} \frac{1}{1+t^2} \ \left[ e^{-y^2(1+t^2)} \right]_{0}^{+ \infty} \, \mathrm{d}t= 
+			\\ &= 
+			\frac{1}{2} \, \int_{0}^{+ \infty} \frac{1}{1+t^2} \, \mathrm{d}t = \frac{ \pi}{4}
 		\end{split}
-	\]
+	\end{equation*}
 	Segue il risultato.
 \end{proof}
 \pagebreak

@@ -1,81 +1,114 @@
 % costante_eulero_mascheroni.tex
 %! TeX root = ../lezione_turbo.tex
 \chapter{Costante di Eulero-Mascheroni}
-Durante il corso è stato dimostrato che la serie armonica $s_n=\sum^n_1\frac{1}{k}$ è asintotica a $\log(n)$.
+Durante il corso è stato dimostrato che la serie armonica $s_n= \sum^n_1 \frac{1}{k}$ è asintotica a $ \log(n)$.
 
 In questa sezione si ricaverà che la loro differenza converge.
 
-\begin{Res} Esiste un reale $\gamma\in\left( \frac{1}{2},1\right)$ tale che
-	\[
-		\lim\limits_{n\to+\infty}s_n-\log(n)=\gamma.
-	\]
+\begin{Res} 
+	Esiste un reale $ \gamma \in \left( \frac{1}{2},1 \right)$ tale che
+	\begin{equation*}
+		\lim \limits_{n \to+ \infty}s_n- \log(n)= 
+		\gamma.
+	\end{equation*}
 \end{Res}
 \begin{proof}
-	Riformuliamo $\gamma$ come un integrale e applichiamo la gamma di strumenti noti. Per farlo, riformuliamo $s_n$: si consideri il polinomio $F(x):[0,1]\to\mathbb{R}$ dato da
-	\[
-		F(x)=\sum^n_1\frac{x^k}{k}.
-	\]
+	Riformuliamo $ \gamma$ come un integrale e applichiamo la gamma di strumenti noti. 
+	Per farlo, riformuliamo $s_n$: si consideri il polinomio $F(x):[0,1] \to \mathbb{R}$ dato da
+	\begin{equation*}
+		F(x)= 
+		\sum^n_1 \frac{x^k}{k}.
+	\end{equation*}
 
 	Osserviamo che $F(1)=s_n$ e $F(0)=0$ e che la la derivata è l'$n$-esima somma parziale della successione geometrica:
 	\begin{equation}
 		\label{res1}
-		f(x)=\sum^{n-1}_0x^k=\frac{x^n-1}{x-1}.
+		f(x)= 
+		\sum^{n-1}_0x^k= 
+		\frac{x^n-1}{x-1}.
 	\end{equation}
 
-	Si osservi che $f$ è continua, per cui è integrabile e ammette primitiva. Allora, per il Teorema Fondamentale del Calcolo integrale e l'identità \ref{res1} si ricava che
-	\[
-		s_n=F(1)-F(0)=\int^1_0f(x)\:\mathrm{d}x=\int^1_0\frac{1-x^n}{1-x}\:\mathrm{d}x=\int^1_0\frac{1-(1-y)^n}{y}\:\mathrm{d}x,
-	\]
+	Si osservi che $f$ è continua, per cui è integrabile e ammette primitiva. 
+	Allora, per il Teorema Fondamentale del Calcolo integrale e l'identità \ref{res1} si ricava che
+	\begin{equation*}
+		s_n=
+		F(1)-F(0)= 
+		\int^1_0f(x) \: \mathrm{d}x= 
+		\int^1_0 \frac{1-x^n}{1-x} \: \mathrm{d}x= 
+		\int^1_0 \frac{1-(1-y)^n}{y} \: \mathrm{d}x,
+	\end{equation*}
 	dove abbiamo sostituito $y=1-x$.
 
-	Questo passaggio permette di passare da oggetti discreti al continuo e impiegare altri strumenti dell'analisi matematica. Poichè lavorare ulteriormente su questo integrale è difficile, conviene spezzarlo in due per linearità. In particolare,
+	Questo passaggio permette di passare da oggetti discreti al continuo e impiegare altri strumenti dell'analisi matematica. 
+	Poichè lavorare ulteriormente su questo integrale è difficile, conviene spezzarlo in due per linearità. 
+	In particolare,
+	\begin{gather*}
+		s_n = 
+		\mathcal{I}_n + \mathcal{J}_n \quad \text{dove} \ \
+		\mathcal{I}_n = \int^1_0 \frac{1-e^{nx}}{x} \: \mathrm{d} x 
+		\qquad 
+		\mathcal{J}_n= \int^1_0 \frac{e^{-nx}-(1-x)^n}{x} \: \mathrm{d} x.
+	\end{gather*}
+
+	Cominciamo con $ \mathcal{J}_n$: vogliamo dimostrare che si tratta di una componente additiva infinitesima. 
+	Schematicamente, al posto di valutare l'integrale per ogni $n$ e poi prenderne il limite successionale, vogliamo trovare il limite successionale dell'integranda $f_n(x)$ per ogni $x$, e poi valutare l'integrale. 
+	Si verifica immediatamente che per $x \in \left( 0,1 \right]$ la funzione $f_n(x)$ è infinitesima al divergere di $n$. Per $x=0$ la funzione non è definita, ma può essere estesa con continuità per ogni $n$, secondo il limite
 	\begin{equation*}
-		\begin{gathered}
-			s_n=\mathcal{I}_n+\mathcal{J}_n \quad \text{dove} \\[0.5\baselineskip]
-			\mathcal{I}_n=\int^1_0\frac{1-e^{nx}}{x}\:\mathrm{d}x \quad \text{e} \quad \mathcal{J}_n=\int^1_0\frac{e^{-nx}-(1-x)^n}{x}\:\mathrm{d}x
-		\end{gathered}
+		\lim \limits_{x \to0} \frac{e^{-nx}-(1-x)^n}{x}= 
+		\lim \limits_{x \to0} \frac{o(x)}{x}=
+		0,
+	\end{equation*}
+	calcolato sviluppando l'esponenziale con Taylor. 
+	Allora, per dei risultati sulle successioni funzionali (in particolare, la convergenza uniforme $f_n \rightrightarrows f$ e continuità di $f_n$), si ottiene che
+	\begin{equation*}
+		\lim \limits_{n \to+ \infty} \int^1_0f_n(x) \: \mathrm{d}x= 
+		\int^1_0 \lim \limits_{n \to+ \infty}f_n(x) \: \mathrm{d}x=
+		\int^1_00 \: \mathrm{d}x=
+		0.
 	\end{equation*}
 
-	Cominciamo con $\mathcal{J}_n$: vogliamo dimostrare che si tratta di una componente additiva infinitesima. Schematicamente, al posto di valutare l'integrale per ogni $n$ e poi prenderne il limite successionale, vogliamo trovare il limite successionale dell'integranda $f_n(x)$ per ogni $x$, e poi valutare l'integrale. Si verifica immediatamente che per $x\in\left( 0,1 \right]$ la funzione $f_n(x)$ è infinitesima al divergere di $n$. Per $x=0$ la funzione non è definita, ma può essere estesa con continuità per ogni $n$, secondo il limite
-	\[
-		\lim\limits_{x\to0}\frac{e^{-nx}-(1-x)^n}{x}=\lim\limits_{x\to0}\frac{o(x)}{x}=0
-	\]
-	calcolato sviluppando l'esponenziale con Taylor. Allora, per dei risultati sulle successioni funzionali (in particolare, la convergenza uniforme $f_n \rightrightarrows f$ e continuità di $f_n$), si ottiene che
-	\[
-		\lim\limits_{n\to+\infty}\int^1_0f_n(x)\:\mathrm{d}x=\int^1_0\lim\limits_{n\to+\infty}f_n(x)\:\mathrm{d}x=\int^1_00\:\mathrm{d}x=0.
-	\]
+	In conclusione $ \lim \limits_{n \to+ \infty} \mathcal{J}_n=0$ e si può dimostrare che $ \mathcal{J}_n \sim \frac{1}{2n}$.
 
-	In conclusione $\lim\limits_{n\to+\infty}\mathcal{J}_n=0$ e si può dimostrare che $\mathcal{J}_n\sim\frac{1}{2n}$.
+	Ora analizziamo $ \mathcal{I}_n$. 
+	L'integrale è improprio, e presenterebbe un punto critico in $x=0$. 
+	In realtà, l'integranda converge per le gerarchie d'infinito e quindi è integrabile secondo Riemann su tutto l'intervallo.
 
-	Ora analizziamo $\mathcal{I}_n$. L'integrale è improprio, e presenterebbe un punto critico in $x=0$. In realtà, l'integranda converge per le gerarchie d'infinito e quindi è integrabile secondo Riemann su tutto l'intervallo.
+	L'integrale può essere semplificato fino a raggiungere la forma "$ \log x +f(x)$": si sostituisca $t=nx$ e poi si integri per parti.
+	\begin{align*}
+			\mathcal{I}_n= 
+			\int^1_0 \frac{1-e^{-nx}}{x} \: \mathrm{d}x
+			&= 
+			\int^n_0 \frac{1-e^{-t}}{t} \: \mathrm{d}t= 
+			\\ &= 
+			\left[ \left(1-e^{-t} \right) \log t \right]^n_0 - \int^n_0 e^{-t} \log t \: \mathrm{d}t=
+			\\ &=
+			\log n-e^{-n} \log n- \int^n_0e^{-t} \log t \: \mathrm{d}t.
+	\end{align*}
 
-	L'integrale può essere semplificato fino a raggiungere la forma "$\log x +f(x)$": si sostituisca $t=nx$ e poi si integri per parti.
+	Sostituendo la precedente identità nella differenza tra $s_n$ e $ \log n$ otteniamo
 	\begin{equation*}
-		\begin{split}
-			\mathcal{I}_n=\int^1_0\frac{1-e^{-nx}}{x}\:\mathrm{d}x&=\int^n_0\frac{1-e^{-t}}{t}\:\mathrm{d}t=\\
-			&=\left[\left(1-e^{-t}\right)\log t\right]^n_0 - \int^n_0 e^{-t} \log t \:\mathrm{d}t=\\
-			&=\log n-e^{-n}\log n-\int^n_0e^{-t}\log t \:\mathrm{d}t.
-		\end{split}
+		s_n- \log n= 
+		\mathcal{J}_n+ \mathcal{I}_n- \log n= 
+		\mathcal{J}_n-e^{-n} \log n- \int^n_0 e^{-t} \log t \: \mathrm{d}t.
 	\end{equation*}
 
-	Sostituendo la precedente identità nella differenza tra $s_n$ e $\log n$ otteniamo
-	\[
-		s_n-\log n=\mathcal{J}_n+\mathcal{I}_n-\log n=\mathcal{J}_n-e^{-n}\log n-\int^n_0 e^{-t}\log t \:\mathrm{d}t.
-	\]
-
-	Poichè $\lim_{n\to\infty} \mathcal{J}_n=0$ e $\lim_{n\to\infty} e^{-n}\log n=0$, si ricava una formula che permette di trovare la costante con precisione arbitraria:
-	\[
-		\gamma=\lim\limits_{n\to+\infty}(s_n-\log n)=-\int^{+\infty}_0e^{-t}\log t \:\mathrm{d}t.
-	\]
-
-	Un'osservazione interessante, infine, è che questo integrale può essere ricondotto alla Funzione Gamma.	Infatti, la derivata $\Gamma'(x)$, calcolata applicando il Teorema di Lebesegue (e cioè invertendo l'ordine di derivazione e integrazione), soddisfa la relazione
-
+	Poichè $ \lim_{n \to \infty} \mathcal{J}_n=0$ e $ \lim_{n \to \infty} e^{-n} \log n=0$, si ricava una formula che permette di trovare la costante con precisione arbitraria:
 	\begin{equation*}
-		\begin{split}
-			\Gamma'(x)&=\frac{\mathrm{d}}{\mathrm{d}x}\left( \int^{+\infty}_0e^{-t}\: t^{\,x-1}\mathrm{d}t\right) =\\&=\int^{+\infty}_0\frac{\mathrm{d}}{\mathrm{d}x}\left( e^{-t}\: t^{\,x-1}\right) \mathrm{d}t=\\&=\int^{+\infty}_0e^{-t}\: t^{\,x-1}\log t\:\mathrm{d}t
-		\end{split}
+		\gamma= 
+		\lim \limits_{n \to+ \infty}(s_n- \log n)=
+		- \int^{+ \infty}_0e^{-t} \log t \: \mathrm{d}t.
 	\end{equation*}
 
-	Da cui si deduce che $\gamma=-\Gamma'(1)$, che numericamente equivale a $0,577\dots$
+	Un'osservazione interessante, infine, è che questo integrale può essere ricondotto alla Funzione Gamma.	
+	Infatti, la derivata $ \Gamma'(x)$, calcolata applicando il Teorema di Lebesegue (e cioè invertendo l'ordine di derivazione e integrazione), soddisfa la relazione
+	\begin{align*}
+		\Gamma'(x)&= 
+		\frac{ \mathrm{d}}{ \mathrm{d}x} \left( \int^{+ \infty}_0e^{-t} \: t^{ \,x-1} \mathrm{d}t \right) = 
+		\\ &= 
+		\int^{+ \infty}_0 \frac{ \mathrm{d}}{ \mathrm{d}x} \left( e^{-t} \: t^{ \,x-1} \right) \mathrm{d}t= 
+		\\ &= 
+		\int^{+ \infty}_0e^{-t} \: t^{ \,x-1} \log t \: \mathrm{d}t
+	\end{align*}
+	Da cui si deduce che $ \gamma=- \Gamma'(1)$, che numericamente equivale a $0,577 \dots$
 \end{proof}
 \pagebreak
