@@ -13,61 +13,72 @@ In questa sezione si ricaverà che la loro differenza converge.
 	\end{equation*}
 \end{Res}
 \begin{proof}
-	Riformuliamo $ \gamma$ come un integrale e applichiamo la gamma di strumenti noti. 
-	Per farlo, riformuliamo $s_n$: si consideri il polinomio $F(x):[0,1] \to \mathbb{R}$ dato da
-	\begin{equation*}
-		F(x)= 
-		\sum^n_1 \frac{x^k}{k}.
-	\end{equation*}
+	Il nostro piano è $s_n - \log(n)$ come un integrale, applicare la gamma di strumenti noti, e poi prendere il limite.
 
-	Osserviamo che $F(1)=s_n$ e $F(0)=0$ e che la la derivata è l'$n$-esima somma parziale della successione geometrica:
+	Partiamo da $s_n$. 
+	Vogliamo trovare una funzione $F_n$ derivabile e parametrizzata su $n$ tale che $F_n(1)=s_n$ e $F_n(0)=0$. 
+	Poi, vogliamo sfruttare questa proprietà per applicare il TFC\footnote{Teorema Fondamentale del Calcolo}, per tradurre la differenza $F_n(1)-F_n(0)$ in un integrale calcolato su un intervallo fisso.
+	Consideriamo il polinomio (calato dall'alto\dots)
+	\begin{equation*}
+		F_n : x \in [0,1] \to
+		\sum^n_1 \frac{x^k}{k} \in \mathbb{R},
+	\end{equation*}
+	che è derivabile e rispetta i vintoli.
+	L'integranda sarà la derivata di $F_n$, data da
 	\begin{equation}
 		\label{res1}
-		f(x)= 
+		f_n(x)= 
 		\sum^{n-1}_0x^k= 
 		\frac{x^n-1}{x-1}.
-	\end{equation}
-
-	Si osservi che $f$ è continua, per cui è integrabile e ammette primitiva. 
-	Allora, per il Teorema Fondamentale del Calcolo integrale e l'identità \ref{res1} si ricava che
+	\end{equation}	
+	Osservando allora che $f$ è continua (quindi integrabile), ricaviamo
 	\begin{equation*}
 		s_n=
 		F(1)-F(0)= 
 		\int^1_0f(x) \: \mathrm{d}x= 
 		\int^1_0 \frac{1-x^n}{1-x} \: \mathrm{d}x= 
 		\int^1_0 \frac{1-(1-y)^n}{y} \: \mathrm{d}x,
-	\end{equation*}
-	dove abbiamo sostituito $y=1-x$.
-
-	Questo passaggio permette di passare da oggetti discreti al continuo e impiegare altri strumenti dell'analisi matematica. 
-	Poichè lavorare ulteriormente su questo integrale è difficile, conviene spezzarlo in due per linearità. 
-	In particolare,
+	\end{equation*}	
+	dove abbiamo applicato il TFC sulla primitiva (per costruzione) $F_n$ di $f_n$, e sostituito $y=1-x$. 
+	
+	Ora stiamo lavorando nel continuo. Per semplicare l'espressione (idealmente, facendo apparire un $\log n$), applichiamo l'idea della Proposizione \ref{eq_fun_gamma}: spezziamo l'integrale in due, e mostriamo che uno dei due contributi decade.
+	In particolare, definiamo
 	\begin{gather*}
 		s_n = 
-		\mathcal{I}_n + \mathcal{J}_n \quad \text{dove} \ \
-		\mathcal{I}_n = \int^1_0 \frac{1-e^{nx}}{x} \: \mathrm{d} x 
+		\mathcal{I}_n + \mathcal{J}_n \quad \text{dove} \\
+		\mathcal{I}_n = \int^1_0 \frac{1-e^{-nx}}{x} \: \mathrm{d} x 
 		\qquad 
 		\mathcal{J}_n= \int^1_0 \frac{e^{-nx}-(1-x)^n}{x} \: \mathrm{d} x.
 	\end{gather*}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=.9\textwidth]{assets/eulero_mascheroni_choice.png}
+		\caption{Le tre funzioni integrande ($f_n$ in grassetto), per $n=3$ e per $n=6$}.		
+	\end{figure}
 
-	Cominciamo con $ \mathcal{J}_n$: vogliamo dimostrare che si tratta di una componente additiva infinitesima. 
-	Schematicamente, al posto di valutare l'integrale per ogni $n$ e poi prenderne il limite successionale, vogliamo trovare il limite successionale dell'integranda $f_n(x)$ per ogni $x$, e poi valutare l'integrale. 
-	Si verifica immediatamente che per $x \in \left( 0,1 \right]$ la funzione $f_n(x)$ è infinitesima al divergere di $n$. Per $x=0$ la funzione non è definita, ma può essere estesa con continuità per ogni $n$, secondo il limite
+	Dalla figura, è chiaro che $\mathcal{J}_n$ decada. 
+	A riprova di ciò, se uno considera il limite $f_n(x)$ per ogni $x \in \left( 0,1 \right]$, calcolato espandendo il polinomio di Taylor, trova che si annulla. Per $x=0$ la funzione non è definita, ma può essere estesa con continuità per ogni $n$, secondo il limite
 	\begin{equation*}
 		\lim \limits_{x \to0} \frac{e^{-nx}-(1-x)^n}{x}= 
 		\lim \limits_{x \to0} \frac{o(x)}{x}=
 		0,
 	\end{equation*}
-	calcolato sviluppando l'esponenziale con Taylor. 
-	Allora, per dei risultati sulle successioni funzionali (in particolare, la convergenza uniforme $f_n \rightrightarrows f$ e continuità di $f_n$), si ottiene che
-	\begin{equation*}
-		\lim \limits_{n \to+ \infty} \int^1_0f_n(x) \: \mathrm{d}x= 
-		\int^1_0 \lim \limits_{n \to+ \infty}f_n(x) \: \mathrm{d}x=
-		\int^1_00 \: \mathrm{d}x=
-		0.
-	\end{equation*}
+	calcolato di nuovo sviluppando l'esponenziale con Taylor.
 
-	In conclusione $ \lim \limits_{n \to+ \infty} \mathcal{J}_n=0$ e si può dimostrare che $ \mathcal{J}_n \sim \frac{1}{2n}$.
+	Questa è un'applicazione immediata del teorema di Convergenza Dominata, ma nello spirito di questa lezione è stato deciso di fare una dimostazione solo di AM1.
+
+	
+	
+	% Allora, per dei risultati sulle successioni funzionali (in particolare, la convergenza uniforme $f_n \rightrightarrows f$ e continuità di $f_n$), si ottiene che
+	% \begin{equation*}
+	% 	\lim \limits_{n \to+ \infty} \int^1_0f_n(x) \: \mathrm{d}x= 
+	% 	\int^1_0 \lim \limits_{n \to+ \infty}f_n(x) \: \mathrm{d}x=
+	% 	\int^1_00 \: \mathrm{d}x=
+	% 	0.
+	% \end{equation*}
+
+	% In conclusione $ \lim \limits_{n \to+ \infty} \mathcal{J}_n=0$ e si può dimostrare che $ \mathcal{J}_n \sim \frac{1}{2n}$.
 
 	Ora analizziamo $ \mathcal{I}_n$. 
 	L'integrale è improprio, e presenterebbe un punto critico in $x=0$. 

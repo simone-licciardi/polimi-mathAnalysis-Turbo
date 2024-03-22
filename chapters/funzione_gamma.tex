@@ -113,6 +113,7 @@ Numericamente, si trova che esso è nel punto $x_{ \min}=1,46 \dots$, con minimo
 
 Veniamo alla relazione fondamentale del capitolo. 
 \begin{Res}[Equazione funzionale della Funzione Gamma]
+\label{eq_fun_gamma}
 La funzione $ \Gamma: \mathbb{R} \to \mathbb{R}$ soddisfa l'equazione funzionale
 	\begin{equation*}
 		\Gamma(x+1)=
@@ -147,7 +148,7 @@ Pertanto, $ \Gamma$ diverge come la funzione $ \frac{1}{x}$ in quell'intorno.
 Valutare l'asintotico all'infinito è più difficile. 
 Per farlo, partiamo da una valutazione della funzione su una classe di punti.
 
-\begin{Res}[Valutazione nei naturali della Funzione Gamma] 
+\begin{Res}[Valutazione di $\Gamma$ sui naturali] 
 La funzione reale $ \Gamma(x)$ interpola la funzione fattoriale che ha per dominio $ \mathbb{N}$. 
 In altri termini,
 	\begin{equation*}
@@ -166,7 +167,7 @@ Osservando che in $x= \frac{1}{2}$, attraverso la sostituzione $y^2=t$, ci si ri
 	\Gamma \left( \frac{1}{2} \right)= \int_{0}^{+ \infty}e^{-t}t^{- \frac{1}{2}} \, \mathrm{d}t=2 \int_{0}^{+ \infty}e^{-y^2} \, \mathrm{d}y= \sqrt{ \pi}.
 \end{equation*} 
 Utilizzando la relazione funzionale possiamo valutare $ \Gamma$ per altri valori.
-\begin{Res}[Valutazione nei numeri $n+ \frac{1}{2}$ della Funzione Gamma] Per $n \in \mathbb{N}$,
+\begin{Res}[Valutazione di $\Gamma$ sui numeri della forma $n+ \frac{1}{2}$] Per $n \in \mathbb{N}$,
 	\begin{equation*}
 		\Gamma \left(n+ \frac{1}{2} \right) = 
 		\sqrt{ \pi} \frac{(2n)!}{4^n n!}.
@@ -181,15 +182,16 @@ Senza dimostrazione \footnote{Rudin, Principles of Mathematical Analysis, Teorem
 \begin{The}[Bohr-Mollerup]
 Sia $f:(0,+ \infty) \to(0,+ \infty)$ tale che
 \begin{enumerate}
-	\item f(1)=1,
-	\item soddisfi f(x+1)=xf(x),
-	\item f è $ \log$-convessa.
+	\item $f(1)=1$,
+	\item $f(x+1)=xf(x)$ per ogni $x \in (0,+ \infty)$,
+	\item $f$ è $ \log$-convessa.
 \end{enumerate}
-Allora, la funzione è unicamente determinata da
+Allora, la funzione è data da
 \begin{equation*}
 f(x) = 
-\lim_{n \to \infty} \frac{n^x n!}{x(x+1) \dots(x+n)}.	
+\lim_{n \to \infty} \frac{n^x n!}{x(x+1) \dots(x+n)},	
 \end{equation*}
+e in particolare è unica.
 \end{The}
 Quindi, la funzione $ \Gamma$, $ \log$-convessa che soddisfa (2), è anche l'unica con queste proprietà. 
 Il teorema fornisce inoltre una caratterizzazione \footnote{Termine da matematico per "maniera di indicare un oggetto senza ambiguità, e cioè unicamente, descrivendolo attraverso delle proprietà diverse da quelle con cui è stato definito". 
