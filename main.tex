@@ -10,11 +10,11 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[style=numeric,sorting=nty,backend=bibtex]{biblatex}
 
-\newtheorem{The}{Teorema}
-\newtheorem{Tec}{Tecniche notevoli}
 \newtheorem{Res}{Risultato}
+\newtheorem{The}[Res]{Teorema}
+\newtheorem{Tec}{Tecniche notevoli}
 \newtheorem{Lem}[Res]{Lemma}
-\newtheorem*{Def}{Definizione}
+\newtheorem{Def}[Res]{Definizione}
 
 \newcommand{\Chapter}[2]{\chapter[#1]{#1\\[1ex]\large#2}}
 
@@ -33,7 +33,7 @@
 {
 	\large Complementi di\\
 	\LARGE \textbf{Analisi Matematica I} \\[.4\baselineskip]
-	\large Appunti dalla lezione Turbo di V. Pata, Politecnico di Milano
+	\large Appunti dalla lezione Turbo di V. Pata, \\Politecnico di Milano
 }
 
 \begin{document}
